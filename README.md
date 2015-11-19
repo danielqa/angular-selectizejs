@@ -1,0 +1,2 @@
+# angular-selectizejs
+angular-selectizejs
