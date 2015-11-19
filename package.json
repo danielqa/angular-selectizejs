@@ -7,5 +7,9 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/danielqa/angular-selectizejs.git"
-  }
+  },
+  "keywords": [
+    "angular",
+    "selectize"
+  ]
 }
