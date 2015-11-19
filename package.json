@@ -1,0 +1,11 @@
+{
+  "name": "angular-selectizejs",
+  "version": "0.1.0",
+  "description": "Angular directive for Selectize.js",
+  "main": "angular-selectize.js",
+  "author": "Daniel Queiroz Araújo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielqa/angular-selectizejs.git"
+  }
+}
