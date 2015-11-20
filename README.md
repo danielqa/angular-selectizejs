@@ -7,14 +7,14 @@ Component for using [AngularJS](https://angularjs.org/) with [Selectize.js](http
 
 ### Using [Bower](http://bower.io/)
 
-```javascript
-bower install angular-selectizejs
+```sh
+$ bower install angular-selectizejs
 ```
 
 ### Using [NPM](https://www.npmjs.com/)
 
-```javascript
-npm install angular-selectizejs
+```sh
+$ npm install angular-selectizejs
 ```
 
 ### Add the module dependency
@@ -89,9 +89,9 @@ $scope.user_options = function() {
 };
 ```
 
-### Using your Selectize instance
+### Using your selectize instance
 
-The value of the 'selectize' attribute is the reference to use Selectize instance.
+The value of the 'selectize' attribute is the reference to use selectize instance in your controller.
 
 ```javascript
 $scope.userSelectize('clearOptions');
