@@ -31,7 +31,7 @@ It's important to import jquery script before angular.
 <script src="jquery.js"></script>
 <script src="selectize.js"></script>
 <script src="angular.js"></script>
-<script src="angular-selectizejs.js"></script>
+<script src="angular-selectize.js"></script>
 ```
 
 ## Usage
