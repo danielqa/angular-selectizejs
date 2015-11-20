@@ -1,39 +1,51 @@
 # angular-selectizejs
 
-Component for using AngularJS with [Selectize.js](https://brianreavis.github.io/selectize.js/).
+Component for using [AngularJS](https://angularjs.org/) with [Selectize.js](https://brianreavis.github.io/selectize.js/).
 
 
-## Install using [Bower](http://bower.io/)
+## Install
+
+### Using [Bower](http://bower.io/)
 
 ```javascript
 bower install angular-selectizejs
 ```
 
-## Install using [NPM](https://www.npmjs.com/)
+### Using [NPM](https://www.npmjs.com/)
 
 ```javascript
 npm install angular-selectizejs
 ```
 
-## Add the module dependency
+### Add the module dependency
 
 ```javascript
 angular.module('myApp', ['selectize']);
 ```
 
+### Import the dependencies
+
+It's important to import jquery script before angular.
+
+```html
+<script src="jquery.js"></script>
+<script src="selectize.js"></script>
+<script src="angular.js"></script>
+<script src="angular-selectizejs.js"></script>
+```
 
 ## Usage
 
 ### Single Mode
 
 ```html
-<select class="form-control" selectize="userSelectize" config="userConfig" options="user_options()" ng-model="user.id"></select>
+<select selectize="userSelectize" config="userConfig" options="user_options()" ng-model="user.id"></select>
 ```
 
 ### Multiple Mode
 
 ```html
-<input type="text" class="form-control" selectize="tagsSelectize" config="tagsConfig" options="tags_options()" ng-model="tags" />
+<input type="text" selectize="tagsSelectize" config="tagsConfig" options="tags_options()" ng-model="tags" />
 ```
 
 ### Config
