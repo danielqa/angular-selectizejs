@@ -54,9 +54,9 @@ $scope.userConfig = {
 ```javascript
 $scope.user_options = function() {
     return [
-        {id: 1, title: 'The user 1'},
-        {id: 2, title: 'The user 2'},
-        {id: 3, title: 'The user 3'}
+        {id: 1, name: 'The user 1'},
+        {id: 2, name: 'The user 2'},
+        {id: 3, name: 'The user 3'}
     ];
 };
 ```
