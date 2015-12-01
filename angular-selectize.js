@@ -21,58 +21,66 @@ angular.module('selectize', []).directive('selectize', ['$q', '$timeout', functi
             var data = scope.options();
             var settings = scope.config();
 
-            var onChange = settings.onChange;
-            delete settings.onChange;
+            var onInitialize = settings.onInitialize;
+            var onLoad = settings.onLoad;
+            delete settings.onInitialize;
+            delete settings.onLoad;
 
             var options = angular.extend({
                 delimiter: ',',
                 mode: type,
                 onInitialize: function () {
-                    $timeout(function () {
-                        selectize = $select[0].selectize;
+                    selectize = $select[0].selectize;
 
-                        if (type === 'multi') {
-                            selectize.on('change', function (selectizeValue) {
-                                var map = [];
-                                if (selectizeValue.length) {
-                                    map = selectizeValue.split(',').map(function (value) {
-                                        var obj = {};
-                                        if (isNaN(Number(value))) {
-                                            obj[settings.labelField] = value;
-                                        } else {
-                                            obj[settings.valueField] = value;
-                                        }
-                                        return obj;
-                                    });
-                                }
-                                ngModel.$setViewValue(map);
-                            });
-                        }
-
-                        scope.$watch('ngDisabled', function (disabled) {
-                            disabled ? selectize.disable() : selectize.enable();
+                    if (type === 'multi') {
+                        selectize.on('change', function (selectizeValue) {
+                            var map = [];
+                            if (selectizeValue.length) {
+                                map = selectizeValue.split(',').map(function (value) {
+                                    var obj = {};
+                                    if (isNaN(Number(value))) {
+                                        obj[settings.labelField] = value;
+                                    } else {
+                                        obj[settings.valueField] = value;
+                                    }
+                                    return obj;
+                                });
+                            }
+                            ngModel.$setViewValue(map);
                         });
+                    }
+
+                    scope.$watch('ngDisabled', function (disabled) {
+                        disabled ? selectize.disable() : selectize.enable();
                     });
+
+                    if (onInitialize) {
+                        onInitialize();
+                    }
                 },
                 onLoad: function () {
-                    $timeout(function () {
-                        if (angular.isArray(ngModel.$modelValue)) {
-                            ngModel.$modelValue.forEach(function (obj) {
-                                selectize.addItem(obj.id, true);
-                            });
-                        } else {
-                            selectize.setValue(ngModel.$modelValue, true);
-                        }
-                    });
-                },
-                onChange: function (value) {
-                    $timeout(function () {
-                        if (onChange) {
-                            onChange(value);
-                        }
-                    });
+                    if (angular.isArray(ngModel.$modelValue)) {
+                        ngModel.$modelValue.forEach(function (obj) {
+                            selectize.addItem(obj.id, true);
+                        });
+                    } else {
+                        selectize.setValue(ngModel.$modelValue, true);
+                    }
+
+                    if (onLoad) {
+                        onLoad();
+                    }
                 }
             }, settings || {});
+            angular.forEach(options, function (value, key) {
+                if (angular.isFunction(value)) {
+                    options[key] = function (param1, param2) {
+                        $timeout(function () {
+                            value(param1, param2);
+                        });
+                    }
+                }
+            });
 
             scope.selectize = function () {
                 var args = Array.prototype.slice.call(arguments);
