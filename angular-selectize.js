@@ -5,7 +5,7 @@ angular.module('selectize', []).directive('selectize', ['$q', '$timeout', functi
     return {
         restrict: 'A',
         require: 'ngModel',
-        priority: 1,
+        priority: 100,
         scope: {
             selectize: '=',
             config: '&',
